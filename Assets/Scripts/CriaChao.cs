@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class CriaChao : MonoBehaviour
 {
     // O objeto da plataforma que será clonado (arrasta aqui no Inspector).
     [SerializeField]
-    private GameObject chao; // o PREFAB (pra clonar)
+    private GameObject chao, moeda; // o PREFAB (pra clonar)
+
     [SerializeField]
     private Transform plataformaInicial; // o Cube (1) da CENA
 
@@ -58,6 +60,13 @@ public class CriaChao : MonoBehaviour
         tempPos.x += tamanhoXZ;        // anda um "passo" em X
         ultimaPos = tempPos;           // atualiza a última posição
         Instantiate(chao, tempPos, Quaternion.identity); // cria o clone sem rotação
+
+        int rand = Random.Range(0, 5);
+
+        if(rand <= 2)
+        {
+            Instantiate(moeda, new Vector3(tempPos.x, tempPos.y + 0.14f, tempPos.z), moeda.transform.rotation);
+        }
     }
 
     // Igual ao criaX, mas no eixo Z.
@@ -67,6 +76,13 @@ public class CriaChao : MonoBehaviour
         tempPos.z += tamanhoXZ;
         ultimaPos = tempPos;
         Instantiate(chao, tempPos, Quaternion.identity);
+
+        int rand = Random.Range(0, 5);
+
+        if(rand <= 2)
+        {
+            Instantiate(moeda, new Vector3(tempPos.x, tempPos.y + 0.14f, tempPos.z), moeda.transform.rotation);
+        }
     }
 
     // Sorteia a direção da próxima plataforma (50% X, 50% Z).
