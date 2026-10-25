@@ -29,6 +29,7 @@ public class TriggerCode : MonoBehaviour
             // Destrói este objeto (a plataforma) depois de 0.3 segundos,
             // dando tempo de ela cair um pouco antes de sumir.
             Destroy(gameObject, 0.3f);
+            CriaChao.chaoNumCena --;
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
+
 public class CriaChao : MonoBehaviour
 {
     // O objeto da plataforma que será clonado (arrasta aqui no Inspector).
@@ -20,8 +21,16 @@ public class CriaChao : MonoBehaviour
     [SerializeField]
     private Vector3 ultimaPos;
 
+    [SerializeField]
+    private int limiteChao;
+
+    public static int chaoNumCena;
+
+
     void Start()
     {
+
+        chaoNumCena = 0;
         // Começa a contar a partir da posição do chão original da cena.
         ultimaPos = plataformaInicial.position;
 
@@ -40,7 +49,7 @@ public class CriaChao : MonoBehaviour
         while (ControladorBola.gameOver != true)
         {
             // Pausa esta função por 0.5s (o resto do jogo segue normal).
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.10f);
 
             // Passados os 0.5s, cria uma plataforma em X ou Z.
             criaChaoXZ();
@@ -91,13 +100,18 @@ public class CriaChao : MonoBehaviour
         // Random.Range com int: sorteia de 0 a 9 (o 10 não entra).
         int temp = Random.Range(0, 10);
 
-        if (temp < 5)
+        if(chaoNumCena < limiteChao)
+        {
+            if (temp < 5)
         {
             criaX();
+            chaoNumCena++;
         }
         else if (temp >= 5)
         {
             criaZ();
+            chaoNumCena++;
+        }
         }
     }
 }
