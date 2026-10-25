@@ -6,6 +6,10 @@ TagManager:
   tags:
   - bolinha
   - moeda
+  - imgfundo
+  - txtgo
+  - imgbtn
+  - txtbtn
   layers:
   - Default
   - TransparentFX
